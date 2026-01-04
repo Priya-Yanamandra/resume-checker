@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Keyword Gap Checker</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Resume Keyword Gap Checker</h1>
+            <p>Optimize your resume for ATS by identifying missing keywords</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Input Section -->
+        <section class="input-section">
+            <div class="card upload-card">
+                <h2>1. Upload Resume</h2>
+                <div class="file-drop-area" id="drop-area">
+                    <span class="icon">📄</span>
+                    <span class="file-msg">Drag & Drop your PDF resume here or click to browse</span>
+                    <input class="file-input" type="file" id="resume-file" accept=".pdf">
+                </div>
+                <div id="file-name" class="file-name"></div>
+            </div>
+
+            <div class="card jd-card">
+                <h2>2. Job Description</h2>
+                <textarea id="jd-text" placeholder="Paste the job description here to compare keywords..."></textarea>
+            </div>
+        </section>
+
+        <!-- Action Section -->
+        <div class="action-section">
+            <button id="analyze-btn" class="btn primary-btn">Analyze Keyword Gap</button>
+            <p id="error-msg" class="error-msg"></p>
+        </div>
+
+        <!-- Results Section (Hidden by default) -->
+        <section id="results-section" class="results-section hidden">
+            <div class="score-card">
+                <div class="score-circle">
+                    <span id="match-percentage">0%</span>
+                    <span class="label">Match Score</span>
+                </div>
+                <div class="score-details">
+                    <p><strong><span id="matched-count">0</span></strong> Matched Keywords</p>
+                    <p><strong><span id="missing-count">0</span></strong> Missing Keywords</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="keywordChart"></canvas>
+                </div>
+            </div>
+
+            <div class="keywords-grid">
+                <div class="card keyword-card matched">
+                    <h3>✅ Matched Keywords</h3>
+                    <div id="matched-list" class="tags-container"></div>
+                </div>
+                <div class="card keyword-card missing">
+                    <h3>⚠️ Missing Keywords</h3>
+                    <div id="missing-list" class="tags-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explanation Section -->
+        <section class="info-section">
+            <h2>How ATS Keyword Matching Works</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>🔍 Keyword Extraction</h3>
+                    <p>An Applicant Tracking System (ATS) scans your resume for specific skills, tools, and qualifications mentioned in the job description.</p>
+                </div>
+                <div class="info-item">
+                    <h3>📊 Frequency & Relevance</h3>
+                    <p>It helps to include keywords naturally. This tool identifies which exact terms from the JD are completely missing from your resume.</p>
+                </div>
+                <div class="info-item">
+                    <h3>🎯 precise Matching</h3>
+                    <p>We clean the text (remove punctuation, stopwords like "and", "the") to focus on the core "content words" that matter to recruiters.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Frontend-only Resume Keyword Gap Checker. Secure & Private (No data leaves your browser).</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
