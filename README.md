@@ -27,3 +27,6 @@ A frontend-only web application that analyzes resumes against job descriptions a
 ## Future Enhancements
 - Semantic keyword matching
 - Section-wise resume analysis
+
+All resume processing and keyword analysis is performed client-side in the browser.
+No files or data are sent to any backend server.
